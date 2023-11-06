@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  useColorScheme,
+} from "react-native";
+import Card from "../../components/Card";
 
-import { Text, View } from "../../components/Themed";
-import { Button, YStack } from "tamagui";
+import Colors from "../../constants/Colors";
 
 interface Category {
   id: number;
@@ -12,12 +17,16 @@ interface Category {
 
 export default function FoodScreen() {
   const [categories, setCategories] = useState<Category[]>([]);
+  const colorScheme = useColorScheme(); // this will be either light or dark
+
+  // Get the current colors from Colors.ts
+  const theme = Colors[colorScheme ?? "light"];
   useEffect(() => {
     axios
       // run with this command: ngrok http --host-header=localhost 5142
       // then replace the ngrok url below with your own
       .get(
-        "https://074c-2601-2c1-8d81-7440-1a82-1cc7-d522-cbb3.ngrok-free.app/api/foodcategories",
+        "https://af96-2601-2c1-8d81-7440-1a82-1cc7-d522-cbb3.ngrok-free.app/api/foodcategories",
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",
@@ -34,25 +43,32 @@ export default function FoodScreen() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={[styles.scrollView, { backgroundColor: theme.background }]}
+      contentContainerStyle={[
+        styles.contentContainer,
+        { backgroundColor: theme.background },
+      ]}
+    >
       {categories.map((category) => (
-        <TouchableOpacity
-          style={styles.container}
+        <Card
+          name={category.name}
           key={category.id}
-          // onPress={() => {
-          //   // todo: navigate using expo router to list of menu items by selected category
-          // }}
-        >
-          <Text>{category.name}</Text>
-        </TouchableOpacity>
+          onPress={() => {
+            //   // todo: navigate using expo router to list of menu items by selected category
+          }}
+        />
       ))}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollView: {
     flex: 1,
+  },
+  contentContainer: {
+    paddingVertical: 30,
     alignItems: "center",
     justifyContent: "center",
   },

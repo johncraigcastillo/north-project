@@ -8,8 +8,6 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
-import { ThemeProvider as TamaguiThemeProvider } from "@tamagui/core";
-import { tamaguiConfig } from "../tamagui.config";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -50,8 +48,6 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
-  // Define your Tamagui themes based on the system color scheme
-  const tamaguiTheme = colorScheme === "dark" ? "dark" : "light";
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
