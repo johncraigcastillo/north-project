@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0bf3850-d659-4320-b748-e9bfe38cba2f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/Card.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(tabs)/drinks/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(tabs)/drinks/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(tabs)/food/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(tabs)/food/foodItemDetails.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(tabs)/food/foodItemsByCategory.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Themed.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Themed.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/Colors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Colors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/food/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/two.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -25,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -49,18 +52,30 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/johncastillo/Projects/WebStormProjects/north-project&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/johncastillo/Projects/WebStormProjects/north-project/app/(tabs)/(drinks)&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/usr/local/lib/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/home/johncastillo/Projects/WebStormProjects/north-project/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/(tabs)/(drinks)" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/(tabs)/drinks" />
+      <recent name="$PROJECT_DIR$/app/(tabs)/(foodStack)" />
+      <recent name="$PROJECT_DIR$/app/(tabs)" />
+      <recent name="$PROJECT_DIR$/app/(tabs)/(drinks)" />
+      <recent name="$PROJECT_DIR$/app/(tabs)/(food)" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -78,7 +93,9 @@
       <workItem from="1699041925724" duration="680000" />
       <workItem from="1699044187396" duration="3203000" />
       <workItem from="1699239268632" duration="1312000" />
-      <workItem from="1699240601041" duration="14534000" />
+      <workItem from="1699240601041" duration="24122000" />
+      <workItem from="1699268086374" duration="5198000" />
+      <workItem from="1699298468119" duration="3043000" />
     </task>
     <servers />
   </component>

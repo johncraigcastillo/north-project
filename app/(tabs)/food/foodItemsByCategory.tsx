@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  useColorScheme,
-} from "react-native";
-import Card from "../../components/Card";
+import { ScrollView, StyleSheet, useColorScheme } from "react-native";
+import Card from "../../../components/Card";
+import Colors from "../../../constants/Colors";
+import { router, useLocalSearchParams, useRouter } from "expo-router";
 
-import Colors from "../../constants/Colors";
-
-interface Category {
+interface Item {
   id: number;
   name: string;
 }
 
-export default function FoodScreen() {
-  const [categories, setCategories] = useState<Category[]>([]);
+export default function FoodItemsByCategory() {
+  const [categories, setCategories] = useState<Item[]>([]);
   const colorScheme = useColorScheme(); // this will be either light or dark
-
   // Get the current colors from Colors.ts
   const theme = Colors[colorScheme ?? "light"];
+
+  const params = useLocalSearchParams();
+  const categoryId = params.categoryId;
+
+  const router = useRouter();
+
   useEffect(() => {
     axios
       // run with this command: ngrok http --host-header=localhost 5142
       // then replace the ngrok url below with your own
       .get(
-        "https://af96-2601-2c1-8d81-7440-1a82-1cc7-d522-cbb3.ngrok-free.app/api/foodcategories",
+        `https://3ef0-2601-2c1-8d81-7440-c2e-d487-ed7b-4260.ngrok-free.app/api/FoodItemsByCategory?desiredFoodCategoryId=${categoryId}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",
@@ -50,12 +50,12 @@ export default function FoodScreen() {
         { backgroundColor: theme.background },
       ]}
     >
-      {categories.map((category) => (
+      {categories.map((item) => (
         <Card
-          name={category.name}
-          key={category.id}
+          name={item.name}
+          key={item.id}
           onPress={() => {
-            //   // todo: navigate using expo router to list of menu items by selected category
+            router.push(`/food/foodItemDetails?id=${item.id}`);
           }}
         />
       ))}
