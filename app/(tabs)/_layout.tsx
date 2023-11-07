@@ -1,51 +1,74 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import React from "react";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Link, Tabs } from "expo-router";
-import { Pressable, useColorScheme } from "react-native";
+import { Pressable, useColorScheme, TextStyle, ViewStyle } from "react-native";
 
 import Colors from "../../constants/Colors";
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
+  name: keyof typeof MaterialCommunityIcons.glyphMap;
   color: string;
 }) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  return (
+    <MaterialCommunityIcons size={28} style={{ marginBottom: -3 }} {...props} />
+  );
+}
+
+function getTabBarIcon(name: keyof typeof MaterialCommunityIcons.glyphMap) {
+  return ({ color }: { color: string }) => (
+    <TabBarIcon name={name} color={color} />
+  );
+}
+
+const headerTitleStyle: TextStyle = {
+  color: Colors.common.lightText,
+};
+
+const headerStyle: ViewStyle = {
+  backgroundColor: Colors.common.headerBackgroundColor,
+  borderBottomWidth: 0,
+};
+
+function screenOptions() {
+  return {
+    headerTitleStyle,
+    headerStyle,
+    tabBarIcon: (props: {
+      name: keyof typeof MaterialCommunityIcons.glyphMap;
+      color: string;
+    }) => <TabBarIcon {...props} />,
+  };
 }
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme() ?? "light";
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        tabBarActiveBackgroundColor: Colors[colorScheme ?? "light"].cardColor,
+        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveBackgroundColor: Colors.common.tabBarActiveBackgroundColor,
         tabBarInactiveBackgroundColor:
-          Colors[colorScheme ?? "light"].background,
+          Colors[colorScheme].tabBarInactiveBackgroundColor,
+        tabBarStyle: {
+          borderTopWidth: 0,
+        },
       }}
     >
       <Tabs.Screen
         name="food"
         options={{
+          ...screenOptions(),
           title: "Food",
-          headerTitleStyle: {
-            color: Colors[colorScheme ?? "light"].lightText,
-          },
-          headerStyle: {
-            backgroundColor: Colors[colorScheme ?? "light"].cardColor,
-            borderBottomWidth: 0,
-          },
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: getTabBarIcon("silverware-fork-knife"),
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
                 {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
+                  <MaterialCommunityIcons
+                    name="information"
                     size={25}
-                    color={Colors[colorScheme ?? "light"].lightText}
+                    color={Colors.common.lightText}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -58,8 +81,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="drinks"
         options={{
+          ...screenOptions(),
           title: "Drinks",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: getTabBarIcon("glass-cocktail"),
         }}
       />
     </Tabs>

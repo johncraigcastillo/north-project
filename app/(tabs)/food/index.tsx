@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ScrollView, StyleSheet, useColorScheme } from "react-native";
 import Card from "../../../components/Card";
+import { Text, View } from "../../../components/Themed"; // Use your exact path to Themed.tsx
+import { useLocalSearchParams, useRouter } from "expo-router";
 import Colors from "../../../constants/Colors";
-import { Link, router, useLocalSearchParams, useRouter } from "expo-router";
 
 interface Category {
   id: number;
@@ -12,16 +13,15 @@ interface Category {
 
 export default function FoodScreen() {
   const [categories, setCategories] = useState<Category[]>([]);
-  const colorScheme = useColorScheme(); // this will be either light or dark
+  const [error, setError] = useState<string | null>(null);
+  const colorScheme = useColorScheme();
 
-  // Get the current colors from Colors.ts
-  const theme = Colors[colorScheme ?? "light"];
   useEffect(() => {
     axios
       // run with this command: ngrok http --host-header=localhost 5142
       // then replace the ngrok url below with your own
       .get(
-        "https://3ef0-2601-2c1-8d81-7440-c2e-d487-ed7b-4260.ngrok-free.app/api/foodcategories",
+        "https://ce1f-2601-2c1-8d81-7440-e71-434b-4170-ae1c.ngrok-free.app/api/foodcategories",
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",
@@ -34,41 +34,45 @@ export default function FoodScreen() {
       .catch((error) => {
         console.error("There was an error fetching the data", error);
         console.error("Error stack trace:", error.stack);
+        setError("There was an error fetching the data");
       });
   }, []);
-
   const router = useRouter();
-  // const params = useLocalSearchParams();
+
+  if (error) {
+    const textColor =
+      colorScheme === "light" ? Colors.light.darkText : Colors.dark.lightText;
+    return <Text style={{ color: textColor }}>{error}</Text>; // Using the custom Text component that adapts to the theme
+  }
+
+  const scrollViewStyle = {
+    flex: 1,
+    backgroundColor:
+      colorScheme === "light"
+        ? Colors.light.background
+        : Colors.dark.background,
+  };
 
   return (
-    <ScrollView
-      style={[styles.scrollView, { backgroundColor: theme.background }]}
-      contentContainerStyle={[
-        styles.contentContainer,
-        { backgroundColor: theme.background },
-      ]}
-    >
-      {categories.map((category) => (
-        <Card
-          name={category.name}
-          key={category.id}
-          onPress={() => {
-            // todo: navigate using expo router to list of menu items by selected category
-            // use expo router to navigate to test screen
-            router.push(`/food/foodItemsByCategory?categoryId=${category.id}`);
-          }}
-        />
-      ))}
+    <ScrollView style={scrollViewStyle}>
+      <View style={styles.contentContainer}>
+        {categories.map((category) => (
+          <Card
+            name={category.name}
+            key={category.id}
+            onPress={() =>
+              router.push(`/food/foodItemsByCategory?categoryId=${category.id}`)
+            }
+          />
+        ))}
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    flex: 1,
-  },
   contentContainer: {
-    paddingVertical: 30,
+    padding: 10,
     alignItems: "center",
     justifyContent: "center",
   },

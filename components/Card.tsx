@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  useColorScheme,
-} from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
+import { Text } from "./Themed"; // Use your exact path to Themed.tsx
 import Colors from "../constants/Colors";
 
 interface CardProps {
@@ -13,35 +9,28 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ name, onPress }) => {
-  const colorScheme = useColorScheme(); // this will be either light or dark
-
-  // Get the current colors from Colors.ts
-  const theme = Colors[colorScheme ?? "light"];
-
   return (
-    <TouchableOpacity
-      style={[styles.card, { backgroundColor: theme.cardColor }]}
-      onPress={onPress}
-    >
-      <Text style={[styles.cardTitle, { color: theme.lightText }]}>{name}</Text>
+    <TouchableOpacity style={styles.card} onPress={onPress}>
+      <Text style={styles.cardTitle}>{name}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
+    backgroundColor: Colors.common.cardColor,
     borderRadius: 8,
     padding: 16,
     marginVertical: 10,
-    width: "80%", // Adjust the width as needed
-    shadowColor: "#000", // Simple shadow for elevation effect
+    width: "80%",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    shadowRadius: 8,
+    elevation: 4,
   },
   cardTitle: {
     fontSize: 24,
